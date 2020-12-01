@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <title>Introduction</title>
+</head>
+<body>
+    <div class="wrapper d-flex flex-column">
+        <div class="main d-flex flex-grow-1">
+            <div class="content">
+                <nav class="navbar navbar-light bg-light shadow-sm">
+                    <a class="navbar-brand" href="#">INTRODUCTION</a>
+                </nav>
+                <div class="container-fluid py-2">
+                    <div class="shadow-lg p-5 mb-5 bg-white rounded">
+                        <h2>Hello</h2>
+                        <hr>
+                        <p>This repo serves as a showcase of my learning process and knowledge on nodejs. In this lesson I am briefly introduced to nodejs and how to run a javascript file using node.</p>
+                        <section>                                    
+                            <h5><b>Code</b></h5>
+                            <div class="p-3 my-3 bg-light">
+                                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// Imports file system functionality provided by nodejs</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> fs <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'fs'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// Creates a file called hello.txt with the content as the second argument</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">fs.<span style="color: #660066;">writeFileSync</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'hello.txt'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'Hello from Node.js'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+                            </div>
+                            To run it, in your terminal run the following code:
+                            <div class="p-3 my-3 bg-light">
+                                <pre class="text" style="font-family:monospace;">node assets/scripts/first-app.js</pre>
+                            </div>
+                        </section>
+                        <div class="d-flex flex-row justify-content-end align-items-center">
+                            <div class="p-2"><a class="btn btn-outline-success btn-sm" href="/Lesson 01 - Javascript Refresher" role="button">Start >></a></div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="sidebar p-4">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link text-white active" href="#">Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="#">JavaScript Refresher</a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
