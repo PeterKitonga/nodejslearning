@@ -1,0 +1,15 @@
+{
+  "name": "lesson-02",
+  "version": "1.0.0",
+  "description": "Example for lesson 02",
+  "main": "app.js",
+  "scripts": {
+    "serve": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Kitonga",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

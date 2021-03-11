@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <title>Workflow and Debugging</title>
+</head>
+<body>
+    <div class="wrapper d-flex flex-column">
+        <div class="main d-flex flex-grow-1">
+            <div class="content">
+                <nav class="navbar navbar-light bg-light shadow-sm">
+                    <a class="navbar-brand text-uppercase" href="#">Workflow and Debugging</a>
+                </nav>
+                <div class="container-fluid py-2">
+                    <div class="shadow-lg p-5 mb-5 bg-white rounded">
+                        <h2>NodeJS Workflow and Debugging</h2>
+                        <hr>
+                        <p>In this section, I learned about setting up the workflow of our node.js application and debugging errors that we face during the development of our application.</p>
+                        <hr>
+
+                        <section>                                    
+                          <h5><b>NPM Scripts</b></h5>
+                          <p>
+                            We use <code>npm</code> scripts to run certain commands for our application that perform certain specific tasks. For example we can have a script that runs our application, 
+                            or runs unit tests for our code as well as building our application into a bundled minified production folder(such as in vuejs). To write our scripts we first need to create our 
+                            <code>package.json</code> file. To create it we run <code>npm init</code>. This generates are file with content like below:
+                          </p>
+                          <div class="p-3 my-3 bg-light">
+                            <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #3366CC;">&quot;name&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;lesson-02&quot;</span><span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #3366CC;">&quot;version&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;1.0.0&quot;</span><span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #3366CC;">&quot;description&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;Example for lesson 02&quot;</span><span style="color: #339933;">,</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #3366CC;">&quot;main&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;app.js&quot;</span><span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #3366CC;">&quot;scripts&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #3366CC;">&quot;serve&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;node app.js&quot;</span><span style="color: #339933;">,</span> <span style="color: #006600; font-style: italic;">// added after package.json file is generated</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #3366CC;">&quot;test&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;echo <span style="color: #000099; font-weight: bold;">\&quot;</span>Error: no test specified<span style="color: #000099; font-weight: bold;">\&quot;</span> &amp;&amp; exit 1&quot;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #3366CC;">&quot;author&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;Peter Kitonga&quot;</span><span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #3366CC;">&quot;license&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;ISC&quot;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span></div></li></ol></pre>
+                          </div>
+                          <p>
+                            In the above example we can see that a script called <code>"serve"</code> is added after the file(<code>package.json</code>) is generated. This allows us to run the node application by
+                            running the command <code>npm run serve</code>.
+                          </p>
+                        </section>
+
+                        <section>                                    
+                          <h5><b>3rd Party Packages</b></h5>
+                          <p>
+                            In nodejs we can use thrid party packages that are maintained in the npm repositories. These packages are installed into our application via the command <code>npm install [package name] --save</code>. This installs
+                            the third party package and can be seen in the <code>package.json</code> file under the <code>dependencies</code> object. This means the package is now available for production use in our application. We can also install
+                            packages by using the <code>--save-dev</code> flag which puts our package under the <code>devDependencies</code> object which simply means they are dev packages for our local development and testing use. The purpose of this 
+                            is to make clear which package is used for what.
+                          </p>
+                        </section>
+
+                        <section>                                    
+                          <h5><b>Debugging</b></h5>
+                          <p>
+                            For debugging, we used the vscode debugging tools to debug our code by setting breakpoints and manually stepping through our code to this breakpoints. For more info on this please visit
+                            the <a href="https://code.visualstudio.com/docs/nodejs/nodejs-debugging" target="_blank">official vscode documentation.</a>
+                          </p>
+                        </section>
+
+                        <div class="d-flex flex-row justify-content-between align-items-center">
+                            <div class="p-2"><a class="btn btn-outline-primary btn-sm" href="/Javascript Refresher" role="button">&lt;&lt; Back</a></div>
+                            <div class="p-2"><a class="btn btn-outline-success btn-sm" href="/Lesson 02 - Workflow and Debugging" role="button">Next &gt;&gt;</a></div>                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="sidebar p-4">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/">Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Javascript Refresher">JavaScript Refresher</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 01 - Basics">Basics</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white active" href="/Lesson 02 - Workflow|Debugging">Workflow and Debugging</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 03 - Working with Express">Working with Express</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 04 - Dynamic Content|Template Engines">Dynamic Content & Template Engines</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 05 - Model View Controller">The Model View Controller</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 06 - Dynamic Routes|Advanced Models">Dynamic Routes & Advanced Models</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 07 - SQL Introduction">SQL Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 08 - Sequelize">Sequelize</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 09 - NoSQL|MongoDB">NoSQL & MongoDB</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 10 - SQL Introduction">SQL Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 11 - Working with Mongoose">Working with Mongoose</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 12 - Sessions|Cookies">Sessions & Cookies</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 13 - Authentication">Authentication</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 14 - Sending Emails">Sending Emails</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 15 - Advanced Authentication">Advanced Authentication</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 16 - Understanding Validation">Understanding Validation</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 17 - Error Handling">Error Handling</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 18 - File Upload|Download">File Upload & Download</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 19 - Pagination">Pagination</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/Lesson 20 - Async Requests">Async Requests</a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
