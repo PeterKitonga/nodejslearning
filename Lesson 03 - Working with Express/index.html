@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <!-- Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  
+  <title>Working with Express</title>
+</head>
+<body>
+  <div class="wrapper d-flex flex-column">
+    <div class="main d-flex flex-grow-1">
+      <div class="content">
+        <nav class="navbar navbar-light bg-light shadow-sm">
+          <a class="navbar-brand text-uppercase" href="#">Working with Express</a>
+        </nav>
+        <div class="container-fluid py-2">
+          <div class="shadow-lg p-5 mb-5 bg-white rounded">
+            <h2>Express.js Framework</h2>
+            <hr>
+            <p>In this section, I learned about using the express.js framework for our nodejs application. This is one of the widely using nodejs frameworks and is designed for building single-page, multi-page and hybrid applications.</p>
+            <hr>
+            
+            <section>                                    
+              <h5><b>Express Middlewares</b></h5>
+              <p>
+                We define middlewares in express by using the <code>use()</code> method which can also be used to attach other things to express as well. This middleware expects three parameters:
+                <ol type="I">
+                  <li><code>req</code> - the request</li>
+                  <li><code>res</code> - the response</li>
+                  <li><code>next</code> - this is a function that allows the request to continue to the next middleware in line</li>
+                </ol>
+                We use these middlewares to perform certain checks before processing a request. For example, check if a user has access to the page being requested.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> express <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> app <span style="color: #339933;">=</span> express<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">/**</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;* The next param is a function that allows the request</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;* to continue to the next middleware in line</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">*/</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'In the middleware!'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    next<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'In another middleware!'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    res.<span style="color: #660066;">send</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'&lt;h1&gt;Hello from Express!!!!&lt;/h1&gt;'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+              <p>
+                In the above example when we access the <code>/</code> route, the request first hits the first middleware then proceeds to the next middleware where we serve a response back. 
+                We would not be able to reach the second middleware if the next() function was not passed.
+              </p>
+            </section>
+
+            <section>                                    
+              <h5><b>Serving html files</b></h5>
+              <p>
+                We can serve html files with express by using the <code>sendFile()</code> method provided by the <code>res</code> param of our route middleware. Here all we do
+                is pass the path to our html file. To do this we need to construct the path to our file and for that we use the nodejs core library called <code>path</code>.
+                This utility provides a <code>join()</code> method with which we can join our path for all operating systems since these systems have different ways of defining
+                system paths.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">/**</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;* We use the core nodejs library path to</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;* construct a path to our html file</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">*/</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> path <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'path'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> express <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> router <span style="color: #339933;">=</span> express.<span style="color: #660066;">Router</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">router.<span style="color: #000066; font-weight: bold;">get</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'/'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #006600; font-style: italic;">/**</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;    * Here, '__dirname' is refering to the current directory of this routes file.</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;    * We add '..' to tell nodejs to move one step back in the folder stucture and</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;    * find views/shop.html</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">&nbsp;   */</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    res.<span style="color: #660066;">sendFile</span><span style="color: #009900;">&#40;</span>path.<span style="color: #660066;">join</span><span style="color: #009900;">&#40;</span>__dirname<span style="color: #339933;">,</span> <span style="color: #3366CC;">'..'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'views'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'shop.html'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">module.<span style="color: #660066;">exports</span> <span style="color: #339933;">=</span> router</div></li></ol></pre>
+              </div>
+            </section>
+            
+            <section>                                    
+              <h5><b>Filtering Paths</b></h5>
+              <p>
+                Whenever we want to a prefixes to routes, we can do this by passing the route prefix as the first parameter in the use method. This will apply the prefix do all routes define in the 
+                middlewares. For example we can add the prefix <code>/admin</code> to middlewares we have defined for the admin routes like so:
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// pass routes</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// here we can also pass route prefixes for the specified middleware</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'/admin'</span><span style="color: #339933;">,</span> admin_routes<span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span>shop_routes<span style="color: #009900;">&#41;</span></div></li></ol></pre>
+              </div>
+            </section>
+            
+            <section>                                    
+              <h5><b>Serving files statically</b></h5>
+              <p>
+                With express.js we can serve files statically by importing the static middleware. This middleware allows us to serve up files such as images and stylesheets which
+                we can place in a <code>public</code> folder for read access. We do this by passing the path to the <code>public</code> directory in our main app file to the static middleware.
+              </p>
+              <code>app.js</code>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// here we load files statically from the public folder</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// it gives read access to the files in this folder</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span>express.<span style="color: #000066; font-weight: bold;">static</span><span style="color: #009900;">&#40;</span>path.<span style="color: #660066;">join</span><span style="color: #009900;">&#40;</span>__dirname<span style="color: #339933;">,</span> <span style="color: #3366CC;">'public'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span></div></li></ol></pre>
+              </div>
+              <code>shop.html</code>
+              <div class="p-3 my-3 bg-light">
+                <pre class="html5" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">head</span>&gt;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">meta</span> <span style="color: #000066;">charset</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;UTF-8&quot;</span>&gt;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">meta</span> <span style="color: #000066;">http-equiv</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;X-UA-Compatible&quot;</span> <span style="color: #000066;">content</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;IE=edge&quot;</span>&gt;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">meta</span> <span style="color: #000066;">name</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;viewport&quot;</span> <span style="color: #000066;">content</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">title</span>&gt;</span>Products Shop<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">title</span>&gt;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">link</span> <span style="color: #000066;">rel</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;stylesheet&quot;</span> <span style="color: #000066;">href</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/css/main.css&quot;</span>&gt;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">head</span>&gt;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Try it</b></h5>
+              <p>
+                To run the app, in your terminal run the following commands:
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="text" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">cd assets/scripts/lesson-03</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm install // if you have not installed dependencies</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm run serve // starts application</div></li></ol></pre>
+              </div>
+            </section>
+            
+            <div class="d-flex flex-row justify-content-between align-items-center">
+              <div class="p-2"><a class="btn btn-outline-primary btn-sm" href="/Lesson 02 - Workflow and Debugging" role="button">&lt;&lt; Back</a></div>
+              <div class="p-2"><a class="btn btn-outline-success btn-sm" href="/Lesson 04 - Dynamic Content|Template Engines" role="button">Next &gt;&gt;</a></div>                   
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="sidebar p-4">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Javascript Refresher">JavaScript Refresher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 01 - Basics">Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 02 - Workflow|Debugging">Workflow and Debugging</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white active" href="/Lesson 03 - Working with Express">Working with Express</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 04 - Dynamic Content|Template Engines">Dynamic Content & Template Engines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 05 - Model View Controller">The Model View Controller</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 06 - Dynamic Routes|Advanced Models">Dynamic Routes & Advanced Models</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 07 - SQL Introduction">SQL Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 08 - Sequelize">Sequelize</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 09 - NoSQL|MongoDB">NoSQL & MongoDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 10 - SQL Introduction">SQL Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 11 - Working with Mongoose">Working with Mongoose</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 12 - Sessions|Cookies">Sessions & Cookies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 13 - Authentication">Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 14 - Sending Emails">Sending Emails</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 15 - Advanced Authentication">Advanced Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 16 - Understanding Validation">Understanding Validation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 17 - Error Handling">Error Handling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 18 - File Upload|Download">File Upload & Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 19 - Pagination">Pagination</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 20 - Async Requests">Async Requests</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
