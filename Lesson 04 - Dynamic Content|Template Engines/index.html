@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <!-- Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  
+  <title>Dynamic Content & Template Engines</title>
+</head>
+<body>
+  <div class="wrapper d-flex flex-column">
+    <div class="main d-flex flex-grow-1">
+      <div class="content">
+        <nav class="navbar navbar-light bg-light shadow-sm">
+          <a class="navbar-brand text-uppercase" href="#">Dynamic Content & Template Engines</a>
+        </nav>
+        <div class="container-fluid py-2">
+          <div class="shadow-lg p-5 mb-5 bg-white rounded">
+            <h2>Dynamic Content & Template Engines</h2>
+            <hr>
+            <p>
+              In this section, I learned about template engines and using them to display dynamic data. There are number of templating engines available and in this section I learned how to use pug, ejs and handlebars.
+              To use templating engine we first need to install them via npm e.g <code>npm install --save pug</code>. Afterwards we need to let express know which template engine we are going to use via the 
+              <a href="https://expressjs.com/en/4x/api.html#app.set"><code>set</code> method</a>. 
+            </p>
+            <div class="p-3 my-3 bg-light">
+              <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> express <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> app <span style="color: #339933;">=</span> express<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #000066; font-weight: bold;">set</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'view engine'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'pug'</span><span style="color: #009900;">&#41;</span> <span style="color: #006600; font-style: italic;">// tells express which template engine is in use</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #000066; font-weight: bold;">set</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'views'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'views'</span><span style="color: #009900;">&#41;</span> <span style="color: #006600; font-style: italic;">// tells express where our template files</span></div></li></ol></pre>
+            </div>
+            <p>
+              For <em>handlebars</em> we require to pass the imported library to the <code>app.engine</code> middleware. This is because <em>handlebars</em> is not automatically loaded by nodejs like <em>pug</em>.
+            </p>
+            <div class="p-3 my-3 bg-light">
+              <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> express <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> expressHbs <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express-handlebars'</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> app <span style="color: #339933;">=</span> express<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// with handlebars, it is not automatically loaded like pug. We need to pass it to the engine method</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">engine</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'hbs'</span><span style="color: #339933;">,</span> expressHbs<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>layoutsDir<span style="color: #339933;">:</span> <span style="color: #3366CC;">'views/layouts/'</span><span style="color: #339933;">,</span> defaultLayout<span style="color: #339933;">:</span> <span style="color: #3366CC;">'wrapper'</span><span style="color: #339933;">,</span> extname<span style="color: #339933;">:</span> <span style="color: #3366CC;">'hbs'</span><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #000066; font-weight: bold;">set</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'view engine'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'hbs'</span><span style="color: #009900;">&#41;</span> <span style="color: #006600; font-style: italic;">// tells express which template engine is in use</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #000066; font-weight: bold;">set</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'views'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'views'</span><span style="color: #009900;">&#41;</span> <span style="color: #006600; font-style: italic;">// tells express where our template files</span></div></li></ol></pre>
+            </div>
+            <hr>
+
+            <section>
+              <h5><b>Try it</b></h5>
+              <p>
+                To run the app, in your terminal run the following commands:
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="text" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">cd assets/scripts/lesson-04</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm install // if you have not installed dependencies</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm run serve // starts application</div></li></ol></pre>
+              </div>
+            </section>
+            
+            <div class="d-flex flex-row justify-content-between align-items-center">
+              <div class="p-2"><a class="btn btn-outline-primary btn-sm" href="/Lesson 03 - Working with Express" role="button">&lt;&lt; Back</a></div>
+              <div class="p-2"><a class="btn btn-outline-success btn-sm" href="/Lesson 05 - Model View Controller" role="button">Next &gt;&gt;</a></div>                   
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="sidebar p-4">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Javascript Refresher">JavaScript Refresher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 01 - Basics">Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 02 - Workflow|Debugging">Workflow and Debugging</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 03 - Working with Express">Working with Express</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white active" href="/Lesson 04 - Dynamic Content|Template Engines">Dynamic Content & Template Engines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 05 - Model View Controller">The Model View Controller</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 06 - Dynamic Routes|Advanced Models">Dynamic Routes & Advanced Models</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 07 - SQL Introduction">SQL Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 08 - Sequelize">Sequelize</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 09 - NoSQL|MongoDB">NoSQL & MongoDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 10 - SQL Introduction">SQL Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 11 - Working with Mongoose">Working with Mongoose</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 12 - Sessions|Cookies">Sessions & Cookies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 13 - Authentication">Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 14 - Sending Emails">Sending Emails</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 15 - Advanced Authentication">Advanced Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 16 - Understanding Validation">Understanding Validation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 17 - Error Handling">Error Handling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 18 - File Upload|Download">File Upload & Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 19 - Pagination">Pagination</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 20 - Async Requests">Async Requests</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "lesson-04",
+  "version": "1.0.0",
+  "description": "Example for lesson 04",
+  "main": "app.js",
+  "scripts": {
+    "serve": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Kitonga",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-handlebars": "3.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
