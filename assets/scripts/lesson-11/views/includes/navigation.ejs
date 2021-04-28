@@ -1,0 +1,74 @@
+<div class="backdrop"></div>
+
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a href="/" class="<%= route_name === 'home' ? 'active' : '' %>">Shop</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/list" class="<%= route_name.includes('list') ? 'active' : '' %>">Listing</a>
+            </li>
+            <% if (authenticated) { %>
+            <li class="main-header__item">
+                <a href="/cart" class="<%= route_name === 'cart' ? 'active' : '' %>">Cart</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/orders" class="<%= route_name === 'orders' ? 'active' : '' %>">Orders</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/admin/products/add" class="<%= route_name === 'products.add' ? 'active' : '' %>">Add Product</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/admin/products/all" class="<%= route_name === 'products.all' ? 'active' : '' %>">Admin Products</a>
+            </li>
+            <% } %>
+        </ul>
+        <ul class="main-header__item-list">
+            <% if (!authenticated) { %>
+            <li class="main-header__item">
+                <a href="/login" class="<%= route_name === 'auth.login' ? 'active' : '' %>">Login</a>
+            </li>
+            <% } else { %>
+            <li class="main-header__item">
+                <form action="/logout" method="POST"><button type="submit">Logout</button></form>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        <li class="mobile-nav__item">
+            <a href="/" class="<%= route_name === 'home' ? 'active' : '' %>">Shop</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a href="/list" class="<%= route_name.includes('list') ? 'active' : '' %>">Listing</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a href="/cart" class="<%= route_name === 'cart' ? 'active' : '' %>">Cart</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a href="/orders" class="<%= route_name === 'orders' ? 'active' : '' %>">Orders</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a href="/admin/products/add" class="<%= route_name === 'products.add' ? 'active' : '' %>">Add Product</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a href="/admin/products/all" class="<%= route_name === 'products.all' ? 'active' : '' %>">Admin Products</a>
+        </li>
+    </ul>
+    <ul class="mobile-nav__item-list">
+        <% if (!authenticated) { %>
+        <li class="mobile-nav__item">
+            <a href="/login" class="<%= route_name === 'auth.login' ? 'active' : '' %>">Login</a>
+        </li>
+        <% } else { %>
+        <li class="mobile-nav__item">
+            <form action="/logout" method="POST"><button type="submit">Logout</button></form>
+        </li>
+        <% } %>
+    </ul>
+</nav>
