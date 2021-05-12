@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <!-- Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  
+  <title>Error Handling</title>
+</head>
+<body>
+  <div class="wrapper d-flex flex-column">
+    <div class="main d-flex flex-grow-1">
+      <div class="content">
+        <nav class="navbar navbar-light bg-light shadow-sm">
+          <a class="navbar-brand text-uppercase" href="#">Error Handling</a>
+        </nav>
+        <div class="container-fluid py-2">
+          <div class="shadow-lg p-5 mb-5 bg-white rounded">
+            <h2>Error Handling</h2>
+            <hr>
+            <p>
+              In this section, I learned how to handle errors in express middlewares.
+            </p>
+            <hr>
+
+            <section>
+              <h5><b>Creating an Error Handler</b></h5>
+              <p>
+                We begin by creating an error handler file(<em><code>/utils/error-handler.js</code></em>) that will house the logic to handle our errors. This function receives an error as a first argument and a next argument that is the express next function. This function will let express know
+                that it needs to immediately pass our result to a special defined middleware. This special middleware accepts an error(error passed to the error handler's next function) as a first argument which we can use to display the error message.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// utils/error-handler.js</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> errorHandler <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>err<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #000066; font-weight: bold;">const</span> error <span style="color: #339933;">=</span> <span style="color: #000066; font-weight: bold;">new</span> Error<span style="color: #009900;">&#40;</span>err<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  error.<span style="color: #660066;">http_status_code</span> <span style="color: #339933;">=</span> <span style="color: #CC0000;">500</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #000066; font-weight: bold;">return</span> next<span style="color: #009900;">&#40;</span>error<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">module.<span style="color: #660066;">exports</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  errorHandler</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// app.js </span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> express <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> app <span style="color: #339933;">=</span> express<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> errors_controller <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'./controllers/errors'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #000066; font-weight: bold;">get</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'/500'</span><span style="color: #339933;">,</span> errors_controller.<span style="color: #660066;">internalError</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// catch all middleware, used for non existing routes</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span>errors_controller.<span style="color: #660066;">notFound</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>err<span style="color: #339933;">,</span> req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  res.<span style="color: #660066;">status</span><span style="color: #009900;">&#40;</span>err.<span style="color: #660066;">http_status_code</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">redirect</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'/500'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Using the Error Handler</b></h5>
+              <p>
+                We can now use the error handler in our route middlewares like below. This ensures that any error throw within or outside our promises gets caught in the <em><code>.catch()</code></em> function where we call our custom error handler.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// controllers/auth.js</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> bcrypt <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'bcryptjs'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> User <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'../models/user'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  errorHandler</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span> <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'../utils/error-handler'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> resetPassword <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  let user<span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #000066; font-weight: bold;">const</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    token<span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    password<span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    confirm_password</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span> <span style="color: #339933;">=</span> req.<span style="color: #660066;">body</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  User.<span style="color: #660066;">findOne</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    reset_token<span style="color: #339933;">:</span> token<span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    reset_token_expiration<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      $gt<span style="color: #339933;">:</span> <span style="">Date</span>.<span style="color: #660066;">now</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&#125;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">then</span><span style="color: #009900;">&#40;</span>existing <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #000066; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span>existing<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      req.<span style="color: #660066;">flash</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'error'</span><span style="color: #339933;">,</span> `Reset link <span style="color: #000066; font-weight: bold;">for</span> email <span style="color: #3366CC;">'${email}'</span> is invalid<span style="color: #339933;">,</span> please create another reset password link.`<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      <span style="color: #000066; font-weight: bold;">return</span> res.<span style="color: #660066;">redirect</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'/forgot'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&#125;</span> <span style="color: #000066; font-weight: bold;">else</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      user <span style="color: #339933;">=</span> existing<span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      <span style="color: #000066; font-weight: bold;">return</span> bcrypt.<span style="color: #660066;">hash</span><span style="color: #009900;">&#40;</span>password<span style="color: #339933;">,</span> <span style="color: #CC0000;">12</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">then</span><span style="color: #009900;">&#40;</span>hashed_password <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        user.<span style="color: #660066;">password</span> <span style="color: #339933;">=</span> hashed_password<span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        user.<span style="color: #660066;">reset_token</span> <span style="color: #339933;">=</span> <span style="color: #003366; font-weight: bold;">null</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        user.<span style="color: #660066;">reset_token_expiration</span> <span style="color: #339933;">=</span> <span style="color: #003366; font-weight: bold;">null</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        <span style="color: #000066; font-weight: bold;">return</span> user.<span style="color: #660066;">save</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">then</span><span style="color: #009900;">&#40;</span>result <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        <span style="color: #000066; font-weight: bold;">return</span> res.<span style="color: #660066;">redirect</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'/login'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span>.<span style="color: #000066; font-weight: bold;">catch</span><span style="color: #009900;">&#40;</span>err <span style="color: #339933;">=&gt;</span> errorHandler<span style="color: #009900;">&#40;</span>err<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&#125;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span>.<span style="color: #000066; font-weight: bold;">catch</span><span style="color: #009900;">&#40;</span>err <span style="color: #339933;">=&gt;</span> errorHandler<span style="color: #009900;">&#40;</span>err<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Try it</b></h5>
+              <p>
+                To run the app, in your terminal run the following commands:
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="text" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">cd assets/scripts/lesson-16</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm install // if you have not installed dependencies</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm run serve // starts application</div></li></ol></pre>
+              </div>
+            </section>
+            
+            <div class="d-flex flex-row justify-content-between align-items-center">
+              <div class="p-2"><a class="btn btn-outline-primary btn-sm" href="/Lesson 15 - Understanding Validation" role="button">&lt;&lt; Back</a></div>
+              <div class="p-2"><a class="btn btn-outline-success btn-sm" href="/Lesson 17 - File Upload|Download" role="button">Next &gt;&gt;</a></div>          
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="sidebar p-4">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Javascript Refresher">JavaScript Refresher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 01 - Basics">Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 02 - Workflow|Debugging">Workflow and Debugging</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 03 - Working with Express">Working with Express</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 04 - Dynamic Content|Template Engines">Dynamic Content & Template Engines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 05 - Model View Controller">The Model View Controller</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 06 - Dynamic Routes|Advanced Models">Dynamic Routes & Advanced Models</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 07 - SQL Introduction">SQL Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 08 - Sequelize">Understanding Sequelize</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 09 - NoSQL|MongoDB">Working with NoSQL & using MongoDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 10 - Working with Mongoose">Working with Mongoose</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 11 - Sessions|Cookies">Sessions & Cookies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 12 - Authentication">Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 13 - Sending Emails">Sending Emails</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 14 - Advanced Authentication">Advanced Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 15 - Understanding Validation">Understanding Validation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white active" href="/Lesson 16 - Error Handling">Error Handling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 17 - File Upload|Download">File Upload & Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 18 - Pagination">Pagination</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 19 - Async Requests">Async Requests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 20 - Adding Payments">Adding Payments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 21 - REST APIs|Basics">Working with REST APIs - Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 22 - REST APIs|Practical">Working with REST APIs - Practical</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 23 - Async|Await">Understanding Async and Await</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 24 - Websockets">Understanding Websockets & Socket.io</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 25 - GraphQL">Working with GraphQL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 26 - Deployment">Deploying Node.js Apps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 27 - Testing">Testing Node.js Apps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 28 - Build Tools">Node.js as a Build Tool</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 29 - ES Modules">Modern JavaScript</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 30 - TypeScript">Using TypeScript in Node.js</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 31 - Deno Introduction">Introduction to Deno</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 32 - Deno CRUD|Databases">Deno, CRUD & Databases</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

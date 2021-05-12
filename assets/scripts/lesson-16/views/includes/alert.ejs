@@ -1,0 +1,13 @@
+<% if (error_message.length > 0) { %>
+    <div class="alert-message alert-message--error">
+        <ul>
+            <% error_message.forEach(err => { %>
+                <% if (typeof err === 'string') { %>
+                    <li><%= err %></li>
+                <% } else { %>
+                    <li><%= err.msg  %></li>
+                <% } %>
+            <% }) %>
+        </ul> 
+    </div>
+<% } %>
