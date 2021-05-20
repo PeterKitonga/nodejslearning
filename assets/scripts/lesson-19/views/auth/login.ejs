@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+
+<main>
+    <%- include('../includes/alert.ejs') %>
+    
+    <form class="login-form" action="/authenticate" method="POST" novalidate>
+        <input type="hidden" name="_csrf" value="<%= csrf_token %>">
+
+        <div class="form-control">
+            <label for="login-email">E-mail</label>
+            <input 
+                type="email" 
+                name="email" 
+                class="<%= error_message.find(e => e.param === 'email') ? 'invalid' : '' %>" 
+                id="login-email" 
+                value="<%= old_input.email %>">
+        </div>
+    
+        <div class="form-control">
+            <label for="login-password">Password</label>
+            <input 
+                type="password" 
+                name="password" 
+                class="<%= error_message.find(e => e.param === 'password') ? 'invalid' : '' %>" 
+                id="login-password" 
+                value="<%= old_input.password %>">
+        </div>
+    
+        <button class="btn" type="submit">Login</button>
+        <a href="/forgot">Forgot password? Click here</a>
+    </form>
+
+</main>
+
+<%- include('../includes/end.ejs') %>

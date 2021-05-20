@@ -1,0 +1,7 @@
+node_modules/
+data/*.json
+data/invoices/*
+public/storage/files/*
+public/storage/logs/*
+
+.env
