@@ -1,0 +1,19 @@
+<section class="pagination">
+    <% if (pagination.current !== 1 && pagination.previous !== 1) { %>
+        <a href="?page=1">1</a>
+    <% } %>
+
+    <% if (pagination.has_previous_page) { %>
+        <a href="?page=<%= pagination.previous %>"><%= pagination.previous %></a>
+    <% } %>
+
+    <a href="?page=<%= pagination.current %>" class="active"><%= pagination.current %></a>
+
+    <% if (pagination.has_next_page) { %>
+        <a href="?page=<%= pagination.next %>"><%= pagination.next %></a>
+    <% } %>
+
+    <% if (pagination.last !== pagination.current && pagination.last !== pagination.next) { %>
+        <a href="?page=<%= pagination.last %>"><%= pagination.last %></a>
+    <% } %>
+</section>
