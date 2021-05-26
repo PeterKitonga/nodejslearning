@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <!-- Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  
+  <title>Working with REST APIs - Basics</title>
+</head>
+<body>
+  <div class="wrapper d-flex flex-column">
+    <div class="main d-flex flex-grow-1">
+      <div class="content">
+        <nav class="navbar navbar-light bg-light shadow-sm">
+          <a class="navbar-brand text-uppercase" href="#">Working with REST APIs - Basics</a>
+        </nav>
+        <div class="container-fluid py-2">
+          <div class="shadow-lg p-5 mb-5 bg-white rounded">
+            <h2>Working with REST APIs - Basics</h2>
+            <hr>
+            <p>
+              In this section, I refresh my knowledge on REST(Representational State Transfer) APIs. REST APIs are useful to provide access to data that is not rendered into HTML pages from a server-side application. They provide data to mobile apps, single page apps and even when accessing a 3<sup>rd</sup> party API like google maps.
+            </p>
+            <hr>
+
+            <section>
+              <h5><b>Body Parser Middleware</b></h5>
+              <p>
+                Since we are no longer working with forms to post data we first need to setup the right body parser for POST, PUT and PATCH requests. We do this by adding a middleware that is available on express. This will allow parsing of <em><code>application/json</code></em> requests.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> express <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> app <span style="color: #339933;">=</span> express<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span>express.<span style="color: #660066;">json</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Handling CORS</b></h5>
+              <p>
+                Because we will be accessing the API from a different origin, by default the browser rejects such requests as a security feature. To by pass this we can set some headers that allow requests from a specific or all origins. This is done using a middleware before any route is accessed.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> express <span style="color: #339933;">=</span> require<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'express'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> app <span style="color: #339933;">=</span> express<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span>express.<span style="color: #660066;">json</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">use</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  res.<span style="color: #660066;">setHeader</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Access-Control-Allow-Origin'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'*'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  res.<span style="color: #660066;">setHeader</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Access-Control-Allow-Headers'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'Content-Type, Authorization'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  res.<span style="color: #660066;">setHeader</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Access-Control-Allow-Methods'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'GET, POST, PUT, PATCH, DELETE'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  next<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Returning JSON responses</b></h5>
+              <p>
+                JSON is a widely format used for REST API response and this can be implemented on Node.js using the <em><code>res</code></em> parameter in any route middleware. We use the <em><code>.json()</code></em> method available to pass data in JSON format and return a response. We can also configure the HTTTP status using the <em><code>.status()</code></em> method.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">exports.<span style="color: #660066;">getPosts</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  let data <span style="color: #339933;">=</span> <span style="color: #009900;">&#91;</span><span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    id<span style="color: #339933;">:</span> <span style="color: #3366CC;">'1622030276720'</span><span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    title<span style="color: #339933;">:</span> <span style="color: #3366CC;">'First Post'</span><span style="color: #339933;">,</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'This is the first post!'</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  res.<span style="color: #660066;">status</span><span style="color: #009900;">&#40;</span><span style="color: #CC0000;">200</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">json</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    status<span style="color: #339933;">:</span> <span style="color: #3366CC;">'success'</span><span style="color: #339933;">,</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    data</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">exports.<span style="color: #660066;">addPost</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #000066; font-weight: bold;">const</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    title<span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    content</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span> <span style="color: #339933;">=</span> req.<span style="color: #660066;">body</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  res.<span style="color: #660066;">status</span><span style="color: #009900;">&#40;</span><span style="color: #CC0000;">201</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">json</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    status<span style="color: #339933;">:</span> <span style="color: #3366CC;">'success'</span><span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    data<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      id<span style="color: #339933;">:</span> <span style="">Date</span>.<span style="color: #660066;">now</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">toString</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      title<span style="color: #339933;">,</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      content</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;">&#125;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Try it</b></h5>
+              <p>
+                To run the app, in your terminal run the following commands:
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="text" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">cd assets/scripts/lesson-21</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm install // if you have not installed dependencies</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm run serve // starts application</div></li></ol></pre>
+              </div>
+            </section>
+            
+            <div class="d-flex flex-row justify-content-between align-items-center">
+              <div class="p-2"><a class="btn btn-outline-primary btn-sm" href="/Lesson 20 - Adding Payments" role="button">&lt;&lt; Back</a></div>
+              <div class="p-2"><a class="btn btn-outline-success btn-sm" href="/Lesson 22 - REST APIs|Practical" role="button">Next &gt;&gt;</a></div>          
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="sidebar p-4">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Javascript Refresher">JavaScript Refresher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 01 - Basics">Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 02 - Workflow|Debugging">Workflow and Debugging</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 03 - Working with Express">Working with Express</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 04 - Dynamic Content|Template Engines">Dynamic Content & Template Engines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 05 - Model View Controller">The Model View Controller</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 06 - Dynamic Routes|Advanced Models">Dynamic Routes & Advanced Models</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 07 - SQL Introduction">SQL Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 08 - Sequelize">Understanding Sequelize</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 09 - NoSQL|MongoDB">Working with NoSQL & using MongoDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 10 - Working with Mongoose">Working with Mongoose</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 11 - Sessions|Cookies">Sessions & Cookies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 12 - Authentication">Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 13 - Sending Emails">Sending Emails</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 14 - Advanced Authentication">Advanced Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 15 - Understanding Validation">Understanding Validation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 16 - Error Handling">Error Handling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 17 - File Upload|Download">File Upload & Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 18 - Pagination">Pagination</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 19 - Async Requests">Async Requests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 20 - Adding Payments">Adding Payments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white active" href="/Lesson 21 - REST APIs|Basics">Working with REST APIs - Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 22 - REST APIs|Practical">Working with REST APIs - Practical</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 23 - Async|Await">Understanding Async and Await</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 24 - Websockets">Understanding Websockets & Socket.io</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 25 - GraphQL">Working with GraphQL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 26 - Deployment">Deploying Node.js Apps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 27 - Testing">Testing Node.js Apps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 28 - Build Tools">Node.js as a Build Tool</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 29 - ES Modules">Modern JavaScript</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 30 - TypeScript">Using TypeScript in Node.js</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 31 - Deno Introduction">Introduction to Deno</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 32 - Deno CRUD|Databases">Deno, CRUD & Databases</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
