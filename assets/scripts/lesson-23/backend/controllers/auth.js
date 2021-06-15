@@ -24,7 +24,7 @@ exports.signup = async (req, res, next) => {
             posts: []
         });
     
-        const result = user.save();
+        const result = await user.save();
         
         res.status(201).json({ status: 'success', data: { userId: result._id } });
     } catch (err) {
