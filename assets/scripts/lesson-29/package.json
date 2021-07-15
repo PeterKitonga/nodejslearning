@@ -1,0 +1,23 @@
+{
+  "name": "es-modules",
+  "version": "1.0.0",
+  "description": "Example setup with ES modules",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "serve": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Kitonga",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^10.0.0",
+    "dotenv-expand": "^5.1.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <!-- Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  
+  <title>Modern JavaScript & Node.js</title>
+</head>
+<body>
+  <div class="wrapper d-flex flex-column">
+    <div class="main d-flex flex-grow-1">
+      <div class="content">
+        <nav class="navbar navbar-light bg-light shadow-sm">
+          <a class="navbar-brand text-uppercase" href="#">Modern JavaScript & Node.js</a>
+        </nav>
+        <div class="container-fluid py-2">
+          <div class="shadow-lg p-5 mb-5 bg-white rounded">
+            <h2>Modern JavaScript & Node.js</h2>
+            <hr>
+            <p>
+              In this section, I learned about ES modules and how to implement them in node.js. ES modules uses the Import/Export syntax.
+            </p>
+            <hr>
+
+            <section>
+              <h5><b>Setting up ES Modules</b></h5>
+              <p>
+                In Node.js, using the require/module.exports syntax is the default way of importing and exporting modules. To enable ES modules, we first need to add a configuration in the <code>package.json</code> file. We do this by adding the line as illustrated below.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="text" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;name&quot;: &quot;es-modules&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;version&quot;: &quot;1.0.0&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;description&quot;: &quot;Example setup with ES modules&quot;,</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;main&quot;: &quot;src/app.js&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;type&quot;: &quot;module&quot;, // enables ES modules</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;scripts&quot;: {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;serve&quot;: &quot;nodemon src/app.js&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;author&quot;: &quot;Peter Kitonga&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;license&quot;: &quot;ISC&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;dependencies&quot;: {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;compression&quot;: &quot;^1.7.4&quot;,</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;dotenv&quot;: &quot;^10.0.0&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;dotenv-expand&quot;: &quot;^5.1.0&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;express&quot;: &quot;^4.17.1&quot;,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;helmet&quot;: &quot;^4.6.0&quot;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  },</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  &quot;devDependencies&quot;: {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    &quot;nodemon&quot;: &quot;^2.0.12&quot;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Using ES Modules</b></h5>
+              <p>
+                We can now use ES modules by first converting all code to use the import/export syntax like below.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #006600; font-style: italic;">// src/app.js</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> dotenv from <span style="color: #3366CC;">&quot;dotenv&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> express from <span style="color: #3366CC;">&quot;express&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  fileURLToPath</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span> from <span style="color: #3366CC;">&quot;url&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  join<span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  dirname</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span> from <span style="color: #3366CC;">&quot;path&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> dotenvExpand from <span style="color: #3366CC;">&quot;dotenv-expand&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> __dirname <span style="color: #339933;">=</span> dirname<span style="color: #009900;">&#40;</span>fileURLToPath<span style="color: #009900;">&#40;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #FF0000;">import</span>.<span style="color: #660066;">meta</span>.<span style="color: #660066;">url</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">dotenvExpand<span style="color: #009900;">&#40;</span>dotenv.<span style="color: #660066;">config</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  path<span style="color: #339933;">:</span> join<span style="color: #009900;">&#40;</span>__dirname<span style="color: #339933;">,</span> <span style="color: #3366CC;">&quot;../.env&quot;</span><span style="color: #009900;">&#41;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> app <span style="color: #339933;">=</span> express<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> port <span style="color: #339933;">=</span> process.<span style="color: #660066;">env</span>.<span style="color: #660066;">APP_PORT</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> resHandler from <span style="color: #3366CC;">&quot;./response-handler.js&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #000066; font-weight: bold;">get</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;/&quot;</span><span style="color: #339933;">,</span> resHandler<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">app.<span style="color: #660066;">listen</span><span style="color: #009900;">&#40;</span>port<span style="color: #339933;">,</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span>`Server running at<span style="color: #339933;">:</span> $<span style="color: #009900;">&#123;</span>process.<span style="color: #660066;">env</span>.<span style="color: #660066;">APP_BASE_URL</span><span style="color: #009900;">&#125;</span>`<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;Hit CTRL-C to stop the server&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+              <p>
+                This means that our response-handler file would look something like:
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> fs from <span style="color: #3366CC;">&quot;fs&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  fileURLToPath</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span> from <span style="color: #3366CC;">&quot;url&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  join<span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  dirname</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span> from <span style="color: #3366CC;">&quot;path&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> __dirname <span style="color: #339933;">=</span> dirname<span style="color: #009900;">&#40;</span>fileURLToPath<span style="color: #009900;">&#40;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #FF0000;">import</span>.<span style="color: #660066;">meta</span>.<span style="color: #660066;">url</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> htmlPath <span style="color: #339933;">=</span> join<span style="color: #009900;">&#40;</span>__dirname<span style="color: #339933;">,</span> <span style="color: #3366CC;">&quot;../html&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> resHandler <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  fs.<span style="color: #660066;">readFile</span><span style="color: #009900;">&#40;</span>`$<span style="color: #009900;">&#123;</span>htmlPath<span style="color: #009900;">&#125;</span><span style="color: #339933;">/</span>home.<span style="color: #660066;">html</span>`<span style="color: #339933;">,</span> <span style="color: #3366CC;">&quot;utf8&quot;</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#40;</span>err<span style="color: #339933;">,</span> data<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    res.<span style="color: #660066;">send</span><span style="color: #009900;">&#40;</span>data<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">export</span> <span style="color: #000066; font-weight: bold;">default</span> resHandler<span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Promises with Node.js core APIs</b></h5>
+              <p>
+                Originally, core APIs for node.js used callbacks. With the introduction of promises in core APIs, we can now use then/catch blocks or async/await syntax to resolve our logic. For example, we can now use all functions present in the file system API by importing the <em><code>fs/promises</code></em> API.
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="javascript" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> fs from <span style="color: #3366CC;">&quot;fs/promises&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  fileURLToPath</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span> from <span style="color: #3366CC;">&quot;url&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">import</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  join<span style="color: #339933;">,</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  dirname</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span> from <span style="color: #3366CC;">&quot;path&quot;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> __dirname <span style="color: #339933;">=</span> dirname<span style="color: #009900;">&#40;</span>fileURLToPath<span style="color: #009900;">&#40;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #FF0000;">import</span>.<span style="color: #660066;">meta</span>.<span style="color: #660066;">url</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> htmlPath <span style="color: #339933;">=</span> join<span style="color: #009900;">&#40;</span>__dirname<span style="color: #339933;">,</span> <span style="color: #3366CC;">&quot;../html&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000066; font-weight: bold;">const</span> resHandler <span style="color: #339933;">=</span> async<span style="color: #009900;">&#40;</span>req<span style="color: #339933;">,</span> res<span style="color: #339933;">,</span> next<span style="color: #009900;">&#41;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #000066; font-weight: bold;">try</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #000066; font-weight: bold;">const</span> data <span style="color: #339933;">=</span> await fs.<span style="color: #660066;">readFile</span><span style="color: #009900;">&#40;</span>`$<span style="color: #009900;">&#123;</span>htmlPath<span style="color: #009900;">&#125;</span><span style="color: #339933;">/</span>home.<span style="color: #660066;">html</span>`<span style="color: #339933;">,</span> <span style="color: #3366CC;">&quot;utf8&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    res.<span style="color: #660066;">send</span><span style="color: #009900;">&#40;</span>data<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span> <span style="color: #000066; font-weight: bold;">catch</span> <span style="color: #009900;">&#40;</span>err<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span>err<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;">&#125;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #FF0000;">export</span> <span style="color: #000066; font-weight: bold;">default</span> resHandler<span style="color: #339933;">;</span></div></li></ol></pre>
+              </div>
+            </section>
+
+            <section>
+              <h5><b>Try it</b></h5>
+              <p>
+                To run the app, in your terminal run the following commands:
+              </p>
+              <div class="p-3 my-3 bg-light">
+                <pre class="text" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">// rest API example</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">cd assets/scripts/lesson-29</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm install // if you have not installed dependencies</div></li><li style="font-weight: bold; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">cp .env.example .env // copy env variables into variable file and change their values</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">npm run serve // starts application</div></li></ol></pre>
+              </div>
+            </section>
+            
+            <div class="d-flex flex-row justify-content-between align-items-center">
+              <div class="p-2"><a class="btn btn-outline-primary btn-sm" href="/Lesson 28 - Build Tools" role="button">&lt;&lt; Back</a></div>
+              <div class="p-2"><a class="btn btn-outline-success btn-sm" href="/Lesson 30 - TypeScript" role="button">Next &gt;&gt;</a></div>          
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="sidebar p-4">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Javascript Refresher">JavaScript Refresher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 01 - Basics">Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 02 - Workflow|Debugging">Workflow and Debugging</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 03 - Working with Express">Working with Express</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 04 - Dynamic Content|Template Engines">Dynamic Content & Template Engines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 05 - Model View Controller">The Model View Controller</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 06 - Dynamic Routes|Advanced Models">Dynamic Routes & Advanced Models</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 07 - SQL Introduction">SQL Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 08 - Sequelize">Understanding Sequelize</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 09 - NoSQL|MongoDB">Working with NoSQL & using MongoDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 10 - Working with Mongoose">Working with Mongoose</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 11 - Sessions|Cookies">Sessions & Cookies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 12 - Authentication">Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 13 - Sending Emails">Sending Emails</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 14 - Advanced Authentication">Advanced Authentication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 15 - Understanding Validation">Understanding Validation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 16 - Error Handling">Error Handling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 17 - File Upload|Download">File Upload & Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 18 - Pagination">Pagination</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 19 - Async Requests">Async Requests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 20 - Adding Payments">Adding Payments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 21 - REST APIs|Basics">Working with REST APIs - Basics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 22 - REST APIs|Practical">Working with REST APIs - Practical</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 23 - Async|Await">Understanding Async and Await</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 24 - Websockets">Understanding Websockets & Socket.io</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 25 - GraphQL">Working with GraphQL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 26 - Deployment">Deploying Node.js Apps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 27 - Testing">Testing Node.js Apps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 28 - Build Tools">Node.js as a Build Tool</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white active" href="/Lesson 29 - ES Modules">Modern JavaScript</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 30 - TypeScript">Using TypeScript in Node.js</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 31 - Deno Introduction">Introduction to Deno</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/Lesson 32 - Deno CRUD|Databases">Deno, CRUD & Databases</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
