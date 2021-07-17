@@ -1,0 +1,23 @@
+{
+  "name": "node-alternative",
+  "version": "1.0.0",
+  "description": "A deno alternative build with node.js",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "serve": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Kitonga",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "dotenv-expand": "^5.1.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
